@@ -7,7 +7,7 @@ import streamlit as st
 from datetime import timedelta
 
 # Load the dataset
-gold_price_data = pd.read_csv("C:/Users/muthu/Downloads/gold_price_per_pavan.csv")
+gold_price_data = pd.read_csv("gold_price_per_pavan.csv")
 
 # Sort the dataset by date to ensure it's in chronological order
 gold_price_data['Date'] = pd.to_datetime(gold_price_data['Date'])
