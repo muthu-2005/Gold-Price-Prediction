@@ -92,26 +92,4 @@ if st.button("Predict Gold Prices"):
 
         # Prepare data for plotting
         # Get last 10 days of historical data
-        last_10_days = df.loc[pd.date_range(end=pd.Timestamp(datetime.now().date()) - timedelta(days=10), periods=10)]
-
-        # Create a date range for the historical data
-        historical_dates = last_10_days.index.tolist()
-
-        # Create combined list of historical and future prices
-        combined_prices = last_10_days['10 Gram Price (₹)'].tolist()[-10:] + future_prices
-        combined_dates = historical_dates + pd.date_range(start=datetime.today(), periods=num_days).tolist()
-
-        # Plotting the results
-        plt.figure(figsize=(12, 6))
-        plt.plot(combined_dates, combined_prices, label=f'Price for {gram_amount} Grams', marker='o', color='blue')
-        plt.axvline(x=datetime.now().date(), color='red', linestyle='--', label='Today')
-        plt.title('Predicted Gold Prices')
-        plt.xlabel('Date')
-        plt.ylabel('Price (₹)')
-        plt.xticks(rotation=45)
-        plt.legend()
-        plt.grid()
-        plt.tight_layout()
-
-        # Show the plot in Streamlit
-        st.pyplot(plt)
+        
