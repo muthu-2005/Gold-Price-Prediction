@@ -1,13 +1,13 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from datetime import datetime, timedelta
 import streamlit as st
 import matplotlib.pyplot as plt
 
 # Load the trained model
-model = load_model('/content/new2.h5')
+model = load_model('rnn_gold_price_model.h5')
 
 # Load your historical data
 df = pd.read_csv('gold_prices_daily_past_2_years.csv')
