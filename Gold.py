@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 model = load_model('rnn_gold_price_model.h5')
 
 # Load your historical data
-df = pd.read_csv('gold_prices_daily_past_2_years.csv')
+df = pd.read_csv('gold_prices_daily_past_5_years.csv')
 
 # Assuming the date column is in 'YYYY-MM-DD' format
 df['Date'] = pd.to_datetime(df['Date'])
