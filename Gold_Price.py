@@ -7,10 +7,10 @@ from tensorflow.keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 
 # Load the pre-trained LSTM model
-model = load_model("C:/Users/muthu/Downloads/gold_price_prediction_model.keras")  # Adjust the path as necessary
+model = load_model("gold_price_prediction_model.keras")  # Adjust the path as necessary
 
 # Load the dataset
-data = pd.read_csv("C:/Users/muthu/Downloads/gold_prices_daily_past_5_years.csv")
+data = pd.read_csv("gold_prices_daily_past_5_years.csv")
 data['Date'] = pd.to_datetime(data['Date'])
 data.set_index('Date', inplace=True)
 
