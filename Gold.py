@@ -7,7 +7,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 
 # Load the trained model
-model = load_model('rnn_gold_price_model.h5')
+model = load_model('mk.h5')
 
 # Load your historical data
 df = pd.read_csv('gold_prices_daily_past_5_years.csv')
