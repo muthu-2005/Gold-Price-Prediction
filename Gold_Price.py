@@ -20,6 +20,8 @@ scaled_data = scaler.fit_transform(data[['1 Gram Price (₹)']])
 
 # Function to predict prices until a specific date
 def predict_until_date(model, data, start_date, end_date, time_step, scaler, grams):
+    # Convert start_date to a Pandas Timestamp
+    start_date = pd.Timestamp(start_date)
     closest_date = data.index[data.index <= start_date][-1]
     start_idx = data.index.get_loc(closest_date)
     
@@ -49,19 +51,21 @@ def predict_until_date(model, data, start_date, end_date, time_step, scaler, gra
 st.title("Gold Price Prediction App")
 
 # Get the current date and user input date
-now_date = dt.datetime.now().date()
+now_date = dt.datetime.now().date()  # Keep this as a date
+now_date_ts = pd.Timestamp(now_date)  # Convert to Pandas Timestamp
 user_end_date = st.date_input("Enter the end date (YYYY/MM/DD)", min_value=now_date)
+user_end_date_ts = pd.Timestamp(user_end_date)  # Convert to Pandas Timestamp
 grams = st.number_input("Enter the number of grams for prediction", min_value=1.0, step=0.1)
 
 if st.button("Predict Gold Prices"):
     # Ensure the user end date is after today
-    if user_end_date <= now_date:
+    if user_end_date_ts <= now_date_ts:
         st.error("End date must be after today.")
     else:
         time_step = 60  # Time step for LSTM
         
         # Predict the gold prices from today until the user-entered date
-        predictions = predict_until_date(model, data, now_date, user_end_date, time_step, scaler, grams)
+        predictions = predict_until_date(model, data, now_date_ts, user_end_date_ts, time_step, scaler, grams)
         
         # Format the dates to YYYY/MM/DD
         predictions['Date'] = predictions['Date'].dt.strftime('%Y/%m/%d')
