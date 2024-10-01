@@ -50,7 +50,7 @@ st.title("Gold Price Prediction App")
 
 # Get the current date and user input date
 now_date = dt.datetime.now().date()
-user_end_date = st.date_input("Enter the end date", min_value=now_date)
+user_end_date = st.date_input("Enter the end date (YYYY/MM/DD)", min_value=now_date)
 grams = st.number_input("Enter the number of grams for prediction", min_value=1.0, step=0.1)
 
 if st.button("Predict Gold Prices"):
@@ -62,6 +62,9 @@ if st.button("Predict Gold Prices"):
         
         # Predict the gold prices from today until the user-entered date
         predictions = predict_until_date(model, data, now_date, user_end_date, time_step, scaler, grams)
+        
+        # Format the dates to YYYY/MM/DD
+        predictions['Date'] = predictions['Date'].dt.strftime('%Y/%m/%d')
         
         # Display the results
         st.write("Predicted Prices:")
