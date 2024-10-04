@@ -1,5 +1,5 @@
-
-streamlit==1.25.0  # Make sure to match the latest stable version you are using
-pandas==2.1.0  # The latest version of pandas or the one compatible with your code
-transformers==4.34.0  # Version used for sentiment analysis with Hugging Face
-torch  # PyTorch is needed for running transformer models
+streamlit
+pandas
+transformers
+torch
+sentencepiece
