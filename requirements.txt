@@ -3,3 +3,4 @@ pandas
 transformers
 torch
 sentencepiece
+scikit-learn
