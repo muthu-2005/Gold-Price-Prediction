@@ -5,3 +5,4 @@ torch
 sentencepiece
 scikit-learn
 matplotlib 
+tensorflow
