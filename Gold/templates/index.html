@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    header {
+        background-color: #000000; /* Gold color */
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+        padding: 8px 15px;
+        border-radius: 4px;
+    }
+
+    nav a:hover {
+        background-color: #b8860b; /* Darker Gold */
+    }
+
+    /* Container Styles */
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #d4af37;
+        text-align: center;
+    }
+
+    label {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+        display: block;
+        color: #555;
+    }
+
+    input[type="date"], input[type="number"] {
+        width: calc(100% - 20px);
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        background-color: #faf0e6;
+    }
+
+    input[type="date"] {
+        font-size: 1.2em;
+    }
+
+    button {
+        padding: 12px 20px;
+        border: none;
+        background-color: #b8860b;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.2em;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto 0 auto;
+    }
+
+    button:hover {
+        background-color: #996515;
+        transform: translateY(-2px);
+    }
+
+    /* Team Section */
+    .section-heading {
+        font-size: 2em;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #333;
+    }
+
+    .team-section {
+        display: flex;
+        justify-content: space-between;
+        margin: 40px 0;
+        flex-wrap: wrap;
+    }
+
+    .team-card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 30%;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .team-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .team-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 3px solid #d4af37;
+    }
+
+    .team-card h3 {
+        font-size: 1.4em;
+        margin: 15px 0 10px 0;
+        color: #d4af37;
+    }
+
+    .team-card p {
+        font-size: 1.1em;
+        color: #555;
+    }
+
+    /* Contact and About Section */
+    .contact-about-section {
+         display: flex;
+        justify-content: space-between;
+        margin: 40px 0;
+        flex-wrap: wrap;
+    }
+
+    .section {
+         background-color: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 30%;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+        transform: translateY(-5px);
+    }
+
+    .section h2 {
+        color: #d4af37;
+        margin-bottom: 15px;
+        font-size: 1.8em;
+    }
+
+    .section p {
+        font-size: 1.1em;
+        color: #555;
+        line-height: 1.6;
+    }
+
+    /* Calendar Input Style */
+    input[type="date"] {
+        appearance: none;
+        background: #fff3e0;
+        border: 1px solid #d4af37;
+        color: #333;
+        padding: 10px 15px;
+        font-size: 1.2em;
+        border-radius: 8px;
+        outline: none;
+        cursor: pointer;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="date"]:hover, input[type="date"]:focus {
+        border-color: #b8860b;
+        box-shadow: 0 0 8px rgba(184, 134, 11, 0.5);
+    }
+
+    /* Footer */
+    footer {
+        background-color: #d4af37;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+    img {
+    max-width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Prevent extra space below image */
+    margin: 20px auto; /* Center the image */
+    border: 2px solid #b8860b; /* Gold border with 4px thickness */
+    /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add a slight shadow for depth */
+}
+
+
+    /* Responsive DataFrame styling */
+    table {
+        width: 100%; /* Make the table full width */
+        border-collapse: collapse;
+        border: 2px solid #b8860b; /* Gold border with 4px thickness */
+   /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);  /* Collapse borders */
+    }
+
+    th, td {
+        border: 1px solid #ccc; /* Add border to table cells */
+        padding: 8px;
+        text-align: center; /* Center text in cells */
+    }
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .team-section {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-card {
+            width: 90%;
+        }
+
+        .contact-about-section {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section {
+            width: 90%;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        button {
+            font-size: 1.1em;
+            padding: 10px 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 1.7em;
+        }
+
+        label, input, button {
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px 0;
+        }
+    }
+    
+</style>
+
+<body>
+    <header id="h">
+        <div class="logo"><a href="#h" onclick="refreshPage()"> 
+            <img style="border: none;" src="{{ url_for('static', filename='Gold_logo.jpg') }}" alt="Gold Prediction Logo">
+        </div></a>
+        <nav>
+             <a href="#te">Team</a>
+            <a href="#con">Contact</a>
+            <!-- <a href="#try-now">Try Now</a> -->
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Gold Price Prediction</h1>
+        <form method="post">
+            <label for="end_date">Enter the end date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+            <label for="grams">Enter the number of grams for prediction:</label>
+            <input type="number" id="grams" name="grams" min="1" step="0.1" required>
+            <button type="submit">Predict Gold Prices</button>
+        </form>
+
+        {% if predictions %}
+        <h2>Predicted Prices:</h2>
+        <div>{{ predictions|safe }}</div>
+        <h2>Prediction Plot:</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Predicted Prices Plot">
+        {% endif %}
+    </div>
+
+    <h2 id="te" class="section-heading">Meet Our Team</h2>
+    <div class="team-section">
+        <div class="team-card">
+            <img src="{{ url_for('static', filename='Muthukumar.png') }}" alt="Team Member 1">
+            <h3>Muthukumar G</h3>
+            <p>Pre-Final Year</p>
+        </div>
+        <div class="team-card">
+            <img src="{{ url_for('static', filename='Vicky.jpg') }}" alt="Team Member 2">
+            <h3>Vigneshwar S I</h3>
+            <p>Pre-Final Year</p>
+        </div>
+        <div class="team-card">
+            <img src="{{ url_for('static', filename='Vishnu.jpg') }}" alt="Team Member 3">
+            <h3>Vishnukeswar A </h3>
+            <p>Final Year</p>
+        </div>
+    </div>
+    <h2 id="con" class="section-heading">Get to Know Us & Reach Out</h2>
+    <div class="contact-about-section">
+        <div class="section">
+            <h2>About Us</h2>
+            <p>We are a group of passionate students studying Artificial Intelligence and Data Science at Sri Sairam Institute of Technology. Our journey revolves around exploring innovative solutions and leveraging advanced technologies to tackle real-world challenges.</p>
+        </div>
+        <div class="section">
+            <h2>GoldSense</h2>
+            <img style="border: none;" src="{{ url_for('static', filename='Gold_logo.jpg') }}" alt="Gold Prediction Logo">
+            <!-- <p></p> -->
+        </div>
+        <div class="section" id="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, suggestions, or would like to collaborate with us, please feel free to reach out. We’d love to hear from you!</p>
+            <p>Email: contact@goldsense.com<br>Phone: +123 456 7890<br>Location: Sai Leo Nagar,West Tambaram<br>District:Chennai</p>
+        </div>
+    </div>
+    <script>
+        
+    
+        function refreshPage() {
+            location.reload(); // Refresh the page when a link is clicked
+        }
+    </script>
+    <footer>
+        &copy; 2024 GoldSense. All rights reserved.
+    </footer>
+</body>
+
+</html>
